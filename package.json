@@ -6,22 +6,35 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
+    "test": "vitest --ui",
     "lint": "eslint"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.1.0",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@tanstack/react-query": "^5.90.2",
+    "antd": "^5.27.4",
+    "classnames": "^2.5.1",
+    "next": "15.5.4",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "@vitest/ui": "^3.2.4",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-    "@eslint/eslintrc": "^3"
+    "jsdom": "^27.0.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
   }
 }

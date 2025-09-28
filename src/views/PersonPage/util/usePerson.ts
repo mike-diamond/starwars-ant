@@ -1,47 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 
 
-type Person = {
-  name: string
-  height: string
-  mass: string
-  hair_color: string
-  skin_color: string
-  eye_color: string
-  birth_year: string
-  gender: string
-  homeworld: string
-  films: string[]
-  species: string[]
-  vehicles: string[]
-  starships: string[]
-  created: string
-  edited: string
-  url: string
+type PersonApiData = ApiData.Person & {
+  detail?: string
 }
 
-type ApiData = {
-  count: number
-  results: Person[]
-}
-
-type Input = {
-  page: number
-  search: string
-}
-
-const usePersons = ({ page, search }: Input) => {
+const usePerson = (personId?: string) => {
   const { data, isPending, error } = useQuery({
-    queryKey: [ 'people', page, search ],
+    queryKey: [ 'person', personId ],
     queryFn: () => {
-      let query = `?page=${page}`
-
-      if (search) {
-        query += `&search=${search}`
-      }
-
-      return fetch(`https://swapi.py4e.com/api/people/${query}`).then(r => r.json()) as ApiData
+      return fetch(`https://swapi.py4e.com/api/people/${personId}`).then(r => r.json()) as PersonApiData
     },
+    enabled: Boolean(personId),
   })
 
   return {
@@ -52,4 +22,4 @@ const usePersons = ({ page, search }: Input) => {
 }
 
 
-export default usePersons
+export default usePerson

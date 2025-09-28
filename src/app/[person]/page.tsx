@@ -1,1 +1,1 @@
-export { default } from 'views/HomePage/HomePage'
+export { default } from 'views/PersonPage/PersonPage'

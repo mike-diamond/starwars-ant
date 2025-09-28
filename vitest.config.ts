@@ -15,7 +15,9 @@ export default defineConfig({
     globals: true,
     setupFiles: './src/tests/setup.ts',
     alias: {
-      'contracts': path.resolve(__dirname, './src/contracts'),
+      'helpers': path.resolve(__dirname, './src/helpers'),
+      'modules': path.resolve(__dirname, './src/modules'),
+      'components': path.resolve(__dirname, './src/components'),
     },
   },
 })
