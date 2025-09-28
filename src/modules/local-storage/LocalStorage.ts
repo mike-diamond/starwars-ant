@@ -49,8 +49,8 @@ class LocalStorage {
 
       return value && JSON.parse(value)
     }
-    catch (error: any) {
-      if (ffErrors.includes(error.name)) {
+    catch (error: unknown) {
+      if (ffErrors.includes((error as Error).name)) {
         this.clear(storage)
 
         return null
@@ -66,8 +66,8 @@ class LocalStorage {
     try {
       storage.setItem(name, JSON.stringify(value))
     }
-    catch (error: any) {
-      if (ffErrors.includes(error.name)) {
+    catch (error: unknown) {
+      if (ffErrors.includes((error as Error).name)) {
         this.clear(storage)
       }
     }
@@ -91,8 +91,8 @@ class LocalStorage {
     try {
       storage.clear()
     }
-    catch (error: any) {
-      if (ffErrors.includes(error.name) && !this.corruptedAlertWasShowed) {
+    catch (error: unknown) {
+      if (ffErrors.includes((error as Error).name) && !this.corruptedAlertWasShowed) {
         // eslint-disable-next-line max-len
         alert('Oops, looks like your browser storage got corrupted. Follow the steps at https://support.mozilla.org/en-US/kb/storage to fix it.')
 

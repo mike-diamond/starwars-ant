@@ -1,6 +1,5 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo } from 'react'
 
-import s from './SkeletonList.module.scss'
 import { List, Skeleton } from 'antd'
 
 

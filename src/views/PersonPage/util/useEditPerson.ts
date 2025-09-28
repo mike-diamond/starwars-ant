@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { constants, getLocalStorageData } from 'helpers'
 import localStorage from 'modules/local-storage'
 
