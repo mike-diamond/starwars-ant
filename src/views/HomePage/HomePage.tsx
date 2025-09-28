@@ -19,6 +19,9 @@ const HomePage: React.FC = () => {
     search,
   })
 
+  const count = data?.count || 0
+  const results = data?.results || []
+
   const totalRef = useRef(data?.count)
   totalRef.current = totalRef.current || data?.count
 
@@ -48,7 +51,7 @@ const HomePage: React.FC = () => {
           )
         }
         {
-          !isPending && !data?.results?.length && (
+          !isPending && !results?.length && (
             <Alert message="No persons found" type="info" />
           )
         }
@@ -63,37 +66,41 @@ const HomePage: React.FC = () => {
         )
       }
       {
-        !isPending && data?.results?.length > 0 && (
+        !isPending && results?.length > 0 && (
           <div className="flex-1 py-4">
             <List
               itemLayout="horizontal"
-              dataSource={data?.results}
-              renderItem={(person) => (
-                <List.Item
-                  className="hover:bg-[#fafafa] -mx-8 !px-8 !py-0"
-                >
-                  <Link
-                    className="w-full hover:text-primary py-3"
-                    href={`/${person.id}`}
+              dataSource={results}
+              renderItem={(person) => {
+                const { id, gender, name, birth_year } = person as ApiData.ModifiedPerson
+
+                return (
+                  <List.Item
+                    className="hover:bg-[#fafafa] -mx-8 !px-8 !py-0"
                   >
-                    <List.Item.Meta
-                      avatar={<GenderAvatar gender={person.gender} />}
-                      title={person.name}
-                      description={`Birth year: ${person.birth_year}`}
-                    />
-                  </Link>
-                </List.Item>
-              )}
+                    <Link
+                      className="w-full hover:text-primary py-3"
+                      href={`/${id}`}
+                    >
+                      <List.Item.Meta
+                        avatar={<GenderAvatar gender={gender} />}
+                        title={name}
+                        description={`Birth year: ${birth_year}`}
+                      />
+                    </Link>
+                  </List.Item>
+                )
+              }}
             />
           </div>
         )
       }
       {
-        (isPending || data?.count > 10) && (
+        (isPending || count > 10) && (
           <div className="flex justify-center">
             <Pagination
               current={page}
-              total={data?.count || 10}
+              total={count || 10}
               showSizeChanger={false}
               disabled={isPending}
               onChange={setPage}

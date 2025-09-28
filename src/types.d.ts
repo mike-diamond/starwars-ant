@@ -19,8 +19,17 @@ declare namespace ApiData {
     url: string
   }
 
+  type ModifiedPerson = Omit<Person, 'url'> & {
+    id: string
+  }
+
   type Persons = {
     count: number
     results: Person[]
+  }
+
+  type ModifiedPersons = {
+    count: number
+    results: ModifiedPerson[]
   }
 }

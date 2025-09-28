@@ -29,5 +29,5 @@
     ".next/types/**/*.ts",
     "node_modules/vitest/globals.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.spec.tsx", "**/*.spec.ts"]
 }

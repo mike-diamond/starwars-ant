@@ -15,14 +15,14 @@ const getLocalStorageData = (personId: string) => {
 
   return fields.reduce((acc, field) => {
     const fieldId = field.id
-    const value = values?.[fieldId]
+    const value = values?.[fieldId as keyof typeof values]
 
     if (typeof value === 'string') {
-      acc[fieldId] = value
+      acc[fieldId as keyof typeof acc] = value
     }
 
     return acc
-  }, {})
+  }, {} as Record<string, string>)
 }
 
 

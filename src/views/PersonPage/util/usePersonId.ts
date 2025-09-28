@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
 
+type State = {
+  personId: string | null
+  isFetching: boolean
+}
+
 type Input = {
   params: Promise<{
     person: string
@@ -8,7 +13,7 @@ type Input = {
 }
 
 const usePersonId = ({ params }: Input) => {
-  const [ state, setState ] = useState({
+  const [ state, setState ] = useState<State>({
     personId: null,
     isFetching: false,
   })

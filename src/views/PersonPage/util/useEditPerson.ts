@@ -14,7 +14,7 @@ type State = {
   gender: string
 }
 
-const useEditPerson = (personId: string) => {
+const useEditPerson = (personId: string | null) => {
   const [ values, setValues ] = useState<State>({
     name: '',
     height: '',
@@ -27,7 +27,11 @@ const useEditPerson = (personId: string) => {
   })
 
   const localStorageData = useMemo(() => {
-    return getLocalStorageData(personId) as Partial<State>
+    if (personId) {
+      return getLocalStorageData(personId) as Partial<State>
+    }
+
+    return {}
   }, [ personId ])
 
   const save = useCallback(() => {

@@ -47,7 +47,7 @@ const PersonPage: React.FC<PersonPageProps> = (props) => {
           (isPending || isFetching) && (
             <div className="flex-1 w-full">
               <div className="flex items-center gap-4">
-                <Skeleton.Avatar gender={values.gender} size={48} active />
+                <Skeleton.Avatar size={48} active />
                 <Skeleton.Input active />
               </div>
               <SkeletonForm className="mt-6" />

@@ -1,11 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { getLocalStorageData } from 'helpers'
 
-
-type ModifiedApiData = Omit<ApiData.Persons, 'results'> & {
-  results: (ApiData.Person & { id: string })[]
-}
 
 type Input = {
   page: number
@@ -22,7 +18,8 @@ const usePersons = ({ page, search }: Input) => {
         query += `&search=${search}`
       }
 
-      return fetch(`https://swapi.py4e.com/api/people/${query}`).then(r => r.json()) as ApiData.Persons
+      return fetch(`https://swapi.py4e.com/api/people/${query}`)
+        .then(r => r.json()) as Promise<ApiData.Persons>
     },
   })
 
@@ -42,14 +39,14 @@ const usePersons = ({ page, search }: Input) => {
       return {
         ...data,
         results,
-      } as ModifiedApiData
+      }
     }
 
     return data
   }, [ data ])
 
   return {
-    data: modifiedData,
+    data: modifiedData as ApiData.ModifiedPersons | undefined,
     error,
     isPending,
   }
